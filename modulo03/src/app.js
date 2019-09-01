@@ -18,6 +18,9 @@ class App {
       '/files',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
     );
+    // Expected termination
+    process.once('SIGINT', () => this.server.stop());
+    process.once('SIGTERM', () => this.server.stop());
   }
 
   routes() {
